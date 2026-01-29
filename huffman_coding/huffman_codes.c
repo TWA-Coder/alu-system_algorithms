@@ -10,14 +10,14 @@
  */
 static void free_huffman_tree(binary_tree_node_t *node)
 {
-    if (node)
-    {
-        free_huffman_tree(node->left);
-        free_huffman_tree(node->right);
-        if (node->data)
-            free(node->data); /* Free symbol_t */
-        free(node);
-    }
+	if (node)
+	{
+		free_huffman_tree(node->left);
+		free_huffman_tree(node->right);
+		if (node->data)
+			free(node->data); /* Free symbol_t */
+		free(node);
+	}
 }
 
 /**
@@ -29,31 +29,31 @@ static void free_huffman_tree(binary_tree_node_t *node)
  */
 static void print_huffman_codes(binary_tree_node_t *node, char *buff, int depth)
 {
-    symbol_t *symbol;
+	symbol_t *symbol;
 
-    if (!node)
-        return;
+	if (!node)
+		return;
 
-    symbol = (symbol_t *)node->data;
+	symbol = (symbol_t *)node->data;
 
-    if (!node->left && !node->right)
-    {
-        buff[depth] = '\0';
-        printf("%c: %s\n", symbol->data, buff);
-        return;
-    }
+	if (!node->left && !node->right)
+	{
+		buff[depth] = '\0';
+		printf("%c: %s\n", symbol->data, buff);
+		return;
+	}
 
-    if (node->left)
-    {
-        buff[depth] = '0';
-        print_huffman_codes(node->left, buff, depth + 1);
-    }
+	if (node->left)
+	{
+		buff[depth] = '0';
+		print_huffman_codes(node->left, buff, depth + 1);
+	}
 
-    if (node->right)
-    {
-        buff[depth] = '1';
-        print_huffman_codes(node->right, buff, depth + 1);
-    }
+	if (node->right)
+	{
+		buff[depth] = '1';
+		print_huffman_codes(node->right, buff, depth + 1);
+	}
 }
 
 /**
@@ -67,27 +67,27 @@ static void print_huffman_codes(binary_tree_node_t *node, char *buff, int depth)
  */
 int huffman_codes(char *data, size_t *freq, size_t size)
 {
-    binary_tree_node_t *root;
-    char *buff;
+	binary_tree_node_t *root;
+	char *buff;
 
-    if (!data || !freq || size == 0)
-        return (0);
+	if (!data || !freq || size == 0)
+		return (0);
 
-    root = huffman_tree(data, freq, size);
-    if (!root)
-        return (0);
+	root = huffman_tree(data, freq, size);
+	if (!root)
+		return (0);
 
-    buff = malloc(sizeof(char) * (size + 1));
-    
-    if (!buff)
-    {
-        free_huffman_tree(root);
-        return (0);
-    }
+	buff = malloc(sizeof(char) * (size + 1));
 
-    print_huffman_codes(root, buff, 0);
+	if (!buff)
+	{
+		free_huffman_tree(root);
+		return (0);
+	}
 
-    free(buff);
-    free_huffman_tree(root);
-    return (1);
+	print_huffman_codes(root, buff, 0);
+
+	free(buff);
+	free_huffman_tree(root);
+	return (1);
 }
