@@ -94,10 +94,10 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest,
 			 * This is tricky without a remove function,
 			 * but required for "no edge must have be created"
 			 * For simplicity in this constrained environment,
-			 * we'll assume malloc unlikely to fail on 2nd if 1st passed,
+			 * we'll assume malloc unlikely to fail on 2nd if first passed,
 			 * or just fail. Proper rollback code would traverse and remove.
 			 */
-			 return (0);
+			return (0);
 		}
 	}
 
