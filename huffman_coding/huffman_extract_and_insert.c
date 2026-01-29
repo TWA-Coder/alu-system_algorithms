@@ -25,7 +25,7 @@ int huffman_extract_and_insert(heap_t *priority_queue)
 
     node2 = (binary_tree_node_t *)heap_extract(priority_queue);
     if (!node2)
-        return (0); // Should probably re-insert node1 if this fails, but basic fail is 0
+        return (0);
 
     s1 = (symbol_t *)node1->data;
     s2 = (symbol_t *)node2->data;

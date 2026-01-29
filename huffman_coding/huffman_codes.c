@@ -77,12 +77,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
     if (!root)
         return (0);
 
-    buff = malloc(sizeof(char) * (size + 1)); /* Max depth generally < size */
-    /* Actually max depth could theoretically be size-1 in worst case degenerate tree */
-    /* Wait, for safety let's allocate enough. A degenerate tree of N nodes has depth N-1. */
-    /* So size + 1 is barely enough for null terminator possibly? */
-    /* Let's be safe and use a reasonable buffer or exact size. */
-    /* Actually worst case depth is 'size', so size + 1 is fine. */
+    buff = malloc(sizeof(char) * (size + 1));
     
     if (!buff)
     {

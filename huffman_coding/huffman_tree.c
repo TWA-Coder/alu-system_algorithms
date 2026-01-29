@@ -27,7 +27,6 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
     {
         if (huffman_extract_and_insert(priority_queue) == 0)
         {
-            /* This might leak partial trees if delete doesn't handle nested deeply */
              heap_delete(priority_queue, NULL);
              return (NULL);
         }
